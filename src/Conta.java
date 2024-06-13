@@ -48,6 +48,11 @@ public abstract class Conta implements IConta {
         contaDestino.depositar(valor);
         transacoes.add(new Transacao("Transferencia", valor, LocalDateTime.now()));
     }
+    @Override
+    public String toString(){
+        return String.format("Titular: %s%nAgencia: %d%nNumero: %d%nSaldo: %.2f%n",
+                this.cliente.getNome(), this.agencia, this.numero, this.saldo);
+    }
 
     protected void imprimirInfosComuns() {
         System.out.printf("Titular: %s%n", this.cliente.getNome());

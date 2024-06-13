@@ -1,6 +1,8 @@
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
-        Banco banco = new Banco("Meu Banco Digital");
+        Banco banco = new Banco("Meu Banco Digital", new ArrayList<>());
 
         Cliente cliente1 = new Cliente("Alice");
         Conta cc1 = new ContaCorrente(cliente1, "1234");
@@ -8,6 +10,7 @@ public class Main {
             cc1.depositar(1000);
             cc1.sacar(500);
         }
+        banco.adicionarConta(cc1);
         cc1.imprimirExtrato();
 
         Cliente cliente2 = new Cliente("Bob");
@@ -16,11 +19,13 @@ public class Main {
             cp1.depositar(2000);
             cp1.transferir(300, cc1);
         }
+        banco.adicionarConta(cp1);
         cp1.imprimirExtrato();
 
-        banco.adicionarConta(cc1);
-        banco.adicionarConta(cp1);
-
         banco.listarContas();
+
+        // Busca de conta por cliente
+        System.out.println(banco.buscarContaPorCliente("Alice"));
+        System.out.println(banco.buscarContaPorCliente("Daniel"));
     }
 }

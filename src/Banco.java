@@ -5,11 +5,10 @@ public class Banco {
 
     private String nome;
     private List<Conta> contas;
-    private Cliente cliente;
 
-    public Banco(String nome) {
+    public Banco(String nome, List<Conta> contas) {
         this.nome = nome;
-        this.contas = new ArrayList<>();
+        this.contas = contas;
     }
 
     public String getNome() {
@@ -32,17 +31,19 @@ public class Banco {
         contas.add(conta);
     }
 
-    public Conta buscarContaPorCliente(String nomeCliente) {
+    public void listarContas() {
         for (Conta conta : contas) {
-            if (conta.getCliente().getNome().equals(nomeCliente)){
-                return conta;
-            }
-        }
-        return null;
-    }
-    public void listarContas(){
-        for(Conta conta: contas){
             System.out.println(conta);
         }
     }
+
+    public String buscarContaPorCliente(String nomeCliente) {
+        for (Conta conta : contas) {
+            if (conta.getCliente().getNome().equals(nomeCliente)) {
+                return "Conta encontrada: \n" + conta.toString();
+            }
+        }
+        return "Conta nao encontrada para o cliente: " + nomeCliente;
+    }
+
 }
